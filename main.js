@@ -13,7 +13,8 @@ const createWindow = () => {
     height: 768,
    // devTools: true,
     resizable: false,
-    fullscreen: true
+    fullscreen: true,
+    frame: false
   });
   // remove the menu bar
   mainWindow.setMenuBarVisibility(false);
@@ -23,6 +24,8 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+
 };
 
 // This method will be called when Electron has finished

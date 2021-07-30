@@ -1,5 +1,6 @@
 body {
     overflow: hidden; 
+    cursor: context-menu;
   }
 
 .base {
@@ -85,24 +86,24 @@ body {
 }
 
 #cmap1 {
-    top: 198px;
-    left: 90px;
+    top: 167px;
+    left: 177px;
 }
 #cmap2 {
-    top: 198px;
-    left: 490px;
+    top: 267px;
+    left: 177px;
 }
 #cmap3 {
-    top: 198px;
-    left: 880px;
+    top: 367px;
+    left: 177px;
 }
 #cmap4 {
-    top: 401px;
-    left: 269px;
+    top: 467px;
+    left: 177px;
 }
 #cmap5 {
-    top: 401px;
-    left: 711px;
+    top: 567px;
+    left: 177px;
 }
 
 #popup {
@@ -129,6 +130,7 @@ body {
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
     background-color: rgba(196,196,196,1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background-size: auto;
 }
 
@@ -160,3 +162,17 @@ body {
     transform: translate(-50%,0);
 }
 
+#profile {
+    position: absolute;
+    left: 640px;
+    top: 167px;
+    width: 450px;
+    height: 480px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    background-color: rgba(255,255,255,1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}

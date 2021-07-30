@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="index.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <title>Digital Concept Map</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="base">
-        <span class="close">Close</span>
-        <div class="main">
-            <iframe id="dcm"></iframe>
-            <div class="title">
-                <div class="cmap-container">Digital Concept Map</div>
-            </div>
-            <div id = "cmap1" class="cmap">
-                <div class="cmap-container">Electricity</div>
-            </div>
-            <div id = "cmap2" class="cmap">
-                <div class="cmap-container">Measurement</div>
-
-            </div>
-            <div id = "cmap3" class="cmap">
-                <div class="cmap-container">Laws of Motion</div>
-
-            </div>
-            <div id = "cmap4" class="cmap">
-                <div class="cmap-container">Light</div>
-
-            </div>
-            <div id = "cmap5" class="cmap">Sound</div>
-
-            <div id="popup">
-                <div id = "backward" class= "popupButtons" onclick="history.go(-1)">
-                    <img src="images/left-arrow.png" class="popupButtons">
-                </div>
-                <div id = "home" class= "popupButtons" onclick="location.reload()">
-                    <img src="images/home.png" class="popupButtons">
-
-                </div>
-                <div id = "forward" class= "popupButtons" onclick="history.go(1)">
-                    <img src="images/right-arrow.png" class="popupButtons">
-
-                </div>
+      <span class="close">Close</span>
+      <div class="main">
+        <iframe id="dcm"></iframe>
+        <div class="title">
+          <div class="cmap-container">Digital Concept Map</div>
+        </div>
+        <div id="cmap1" class="cmap" onclick="goToPage(1)">
+          <div class="cmap-container">Electricity</div>
+        </div>
+        <div id="cmap2" class="cmap" onclick="goToPage(2)">
+          <div class="cmap-container">Measurement</div>
+        </div>
+        <div id="cmap3" class="cmap" onclick="goToPage(3)">
+          <div class="cmap-container">Laws of Motion</div>
+        </div>
+        <div id="cmap4" class="cmap" onclick="goToPage(4)">
+          <div class="cmap-container">Light</div>
+        </div>
+        <div id="cmap5" class="cmap" onclick="goToPage(5)">
+          <div class="cmap-container">Sound</div>
+        </div>
+        <div id="profile">
+            <div class="cmap-container">
+                <h1>Delphin DL</h1>
+                <p>Research Scholar</p>
             </div>
         </div>
-        <span class="navigator">Navigator</span>
-
+        <div id="popup">
+          <div id="backward" class="popupButtons" onclick="history.go(-1)">
+            <img src="images/left-arrow.png" class="popupButtons" />
+          </div>
+          <div id="home" class="popupButtons" onclick="location.reload()">
+            <img src="images/home.png" class="popupButtons" />
+          </div>
+          <div id="forward" class="popupButtons" onclick="history.go(1)">
+            <img src="images/right-arrow.png" class="popupButtons" />
+          </div>
+        </div>
+      </div>
+      <span class="navigator">Navigator</span>
     </div>
-</body>
+  </body>
 </html>

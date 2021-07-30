@@ -26,23 +26,51 @@ window.addEventListener("load", function () {
 });
 
 // functions
-function hideCmaps(){
-  $('#cmap1').css("display","none");
-  $('#cmap2').css("display","none");
+function hideCmaps() {
+  $("#cmap1").css("display", "none");
+  $("#cmap2").css("display", "none");
 
-  $('#cmap3').css("display","none");
+  $("#cmap3").css("display", "none");
 
-  $('#cmap4').css("display","none");
-  $('#cmap5').css("display","none");
+  $("#cmap4").css("display", "none");
+  $("#cmap5").css("display", "none");
+  $(".title").css("display", "none");
+  $("#profile").css("display", "none");
 
 }
 
-function goToPage(page){
+function goToPage(page) {
   hideCmaps();
-  $('#dcm').css("display","block");
-  if(page == 1){
-  $('#dcm').attr("src","")
-
+  $("#dcm").css("display", "block");
+  if (page == 1) {
+    $("#dcm").attr(
+      "src",
+      "assets/CURRENT ELECTRICITY/CURRENT ELECTRICITY AND ELECTRIC ENERGY-CONTENT.cmap.html"
+    );
   }
-
+  if (page == 2) {
+    $("#dcm").attr(
+      "src",
+      "assets/MEASUREMENT/MEASUREMENT-CONTENT.cmap.html"
+    );
+  }
+  if (page == 3) {
+    $("#dcm").attr(
+      "src",
+      "assets/LAWS OF MOTION/LAWS OF MOTION- CONTENT.cmap.html"
+    );
+  }
+  if (page == 4) {
+    $("#dcm").attr(
+      "src",
+      "assets/LIGHT/LIGHT - CONTENT.cmap.html"
+    );
+  }
+  if (page == 5) {
+    $("#dcm").attr(
+      "src",
+      "assets/SOUND/SOUND - CONTENT.cmap.html"
+    );
+  }
 }
+
