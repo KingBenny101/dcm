@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet" />
+    <script type="text/javascript" src="index.js"></script>
     <title>Digital Concept Map</title>
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-    <h1>💖 Hello World!</h1>
-    <p>Welcome to your Electron application.</p>
-  </body>
+</head>
+<body>
+    <div class="base">
+        <span class="close">close</span>
+        <div class="main">
+            <div class="title">
+                <div class="cmap-container">Digital Concept Map</div>
+            </div>
+            <iframe id="dcm"></iframe>
+            <div id = "cmap1" class="cmap">
+                <div class="cmap-container">Electricity</div>
+            </div>
+            <div id = "cmap2" class="cmap">
+                <div class="cmap-container">Measurement</div>
+
+            </div>
+            <div id = "cmap3" class="cmap">
+                <div class="cmap-container">Laws of Motion</div>
+
+            </div>
+            <div id = "cmap4" class="cmap">
+                <div class="cmap-container">Light</div>
+
+            </div>
+            <div id = "cmap5" class="cmap"></div>
+
+            <div id="popup">
+                <div id = "backward" class= "popupButtons"></div>
+                <div id = "home" class= "popupButtons"></div>
+                <div id = "forward" class= "popupButtons"></div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

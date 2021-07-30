@@ -1,6 +1,129 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+    overflow: hidden; 
+  }
+
+.base {
+    width: 1366px;
+    height: 768px;
+    background-color: rgb(45, 39, 39);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    
+}
+.main {
+    width: 1280px;
+    height: 682px;
+    background-color: rgb(183, 255, 30);
+    position: absolute;
+    top: 43px;
+    left: 43px;
+    
+}
+
+
+.close {
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    color: white;
+    padding: 6px 6px;
+    font-family: Verdana;
+    font-size: 24px;
+  }
+  
+.close:hover {background: #bbb;}
+
+.title {
+    position: absolute;
+    height: 80px;
+    width: 1000px;
+    top: 26px;
+    left: 140px;
+    background-color: rgb(255,0,0);
+    color: white;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 48px;
+    font-family: Verdana;
+    text-align: center;
+}
+
+#dcm {
+    display: none;
+}
+
+.cmap {
+    width: 300px;
+    height: 80px;
+    position: absolute;
+    background-color: rgb(2, 27, 173);
+    color: white;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 36px;
+    font-family: Verdana;
+    text-align: center;
+    
+
+}
+.cmap-container {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+}
+
+#cmap1 {
+    top: 198px;
+    left: 90px;
+}
+#cmap2 {
+    top: 198px;
+    left: 490px;
+}
+#cmap3 {
+    top: 198px;
+    left: 880px;
+}
+#cmap4 {
+    top: 401px;
+    left: 269px;
+}
+#cmap5 {
+    top: 401px;
+    left: 711px;
+}
+
+#popup {
+    width: 325px;
+    height: 100px;
+    position: absolute;
+    top: 552px;
+    left: 477px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgb(155,75,137);
+}
+
+.popupButtons {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    background-color: rgb(196,196,196);
 }
