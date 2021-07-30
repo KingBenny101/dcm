@@ -5,17 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <title>Digital Concept Map</title>
 </head>
 <body>
     <div class="base">
-        <span class="close">close</span>
+        <span class="close">Close</span>
         <div class="main">
+            <iframe id="dcm"></iframe>
             <div class="title">
                 <div class="cmap-container">Digital Concept Map</div>
             </div>
-            <iframe id="dcm"></iframe>
             <div id = "cmap1" class="cmap">
                 <div class="cmap-container">Electricity</div>
             </div>
@@ -31,14 +32,24 @@
                 <div class="cmap-container">Light</div>
 
             </div>
-            <div id = "cmap5" class="cmap"></div>
+            <div id = "cmap5" class="cmap">Sound</div>
 
             <div id="popup">
-                <div id = "backward" class= "popupButtons"></div>
-                <div id = "home" class= "popupButtons"></div>
-                <div id = "forward" class= "popupButtons"></div>
+                <div id = "backward" class= "popupButtons" onclick="history.go(-1)">
+                    <img src="images/left-arrow.png" class="popupButtons">
+                </div>
+                <div id = "home" class= "popupButtons" onclick="location.reload()">
+                    <img src="images/home.png" class="popupButtons">
+
+                </div>
+                <div id = "forward" class= "popupButtons" onclick="history.go(1)">
+                    <img src="images/right-arrow.png" class="popupButtons">
+
+                </div>
             </div>
         </div>
+        <span class="navigator">Navigator</span>
+
     </div>
 </body>
 </html>
