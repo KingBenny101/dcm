@@ -87,3 +87,6 @@ typings/
 
 # Electron-Forge
 out/
+
+assets
+CMAP HTML
