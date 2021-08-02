@@ -8,8 +8,11 @@ body {
     height: 768px;
     background-color: rgb(45, 39, 39);
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+
     
 }
 .main {
@@ -31,7 +34,7 @@ body {
     right: 0%;
     color: white;
     padding: 6px 6px;
-    font-family: Verdana;
+    font-family: Verdana, sans-serif;
     font-size: 24px;
   }
   
@@ -51,7 +54,7 @@ body {
     border-bottom-right-radius: 18px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-size: 48px;
-    font-family: Verdana;
+    font-family: Verdana, sans-serif;
     text-align: center;
 }
 
@@ -73,10 +76,14 @@ body {
     border-bottom-right-radius: 18px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-size: 36px;
-    font-family: Verdana;
+    font-family: Verdana, sans-serif;
     text-align: center;
     
 
+}
+
+.cmap:hover {
+    background-color: gray;
 }
 .cmap-container {
     top: 50%;
@@ -106,50 +113,7 @@ body {
     left: 177px;
 }
 
-#popup {
-    width: 325px;
-    height: 100px;
-    position: absolute;
-    top: 552px;
-    left: 477px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: rgb(155,75,137);
-    display: none;
-}
 
-.popupButtons {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    border-top-left-radius: 35px;
-    border-top-right-radius: 35px;
-    border-bottom-left-radius: 35px;
-    border-bottom-right-radius: 35px;
-    background-color: rgba(196,196,196,1);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background-size: auto;
-}
-
-#backward {
-    top: 15px;
-    left: 22px;
-    
-}
-
-#home {
-    top: 15px;
-    left: 128px;
-
-}
-#forward {
-    top: 15px;
-    left: 234px;
-
-}
 
 .navigator {
     position: absolute;
@@ -157,9 +121,19 @@ body {
     padding:6px 6px;
     color: white;
     font-size: 24px;
-    font-family: Verdana;
+    font-family: Verdana, sans-serif;
     left: 50%;
     transform: translate(-50%,0);
+}
+
+.navigatorButton {
+    cursor: pointer;
+    padding-left: 40px;
+    padding-right: 40px;    
+}
+
+.navigatorButton:hover {
+    background-color: #bbb;
 }
 
 #profile {
@@ -176,3 +150,62 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 }
+
+
+#modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.25);
+    display: block;
+}
+
+#modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    height: 400px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: blueviolet;
+}
+
+
+#select {
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    transform: translate(-50%,0%);
+    font-family: Verdana,sans-serif;
+    font-size: 36px;
+    color: white;
+}
+
+
+#modal-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 30px;
+    padding: 12px 12px;
+    color: white;
+    font-family: Verdana,sans-serif;
+    font-size: 30px;
+}
+
+#modal-close:hover {
+    color: black;
+}
+
+
+
+
+
+
+
+

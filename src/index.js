@@ -8,16 +8,16 @@ window.addEventListener("load", function () {
   });
 
   //navigator jquery
-  $(".navigator").hover(
-    function () {
-      $("#popup").css("display", "block");
-    },
-    function () {
-      setTimeout(function () {
-        $("#popup").css("display", "none");
-      }, 5000);
-    }
-  );
+  // $(".navigator").hover(
+  //   function () {
+  //     $("#popup").css("display", "block");
+  //   },
+  //   function () {
+  //     setTimeout(function () {
+  //       $("#popup").css("display", "none");
+  //     }, 5000);
+  //   }
+  // );
 
   //this is totally not needed
   setTimeout(function () {
@@ -73,4 +73,18 @@ function goToPage(page) {
     );
   }
 }
+
+function backwardCheck(){
+  document.getElementById("dcm").contentWindow.history.back();
+  setTimeout(function(){
+    var url = document.getElementById("dcm").contentWindow.location.href;
+  
+    if(url == "about:blank"){
+      location.reload();
+    }
+  },25);
+
+}
+
+
 

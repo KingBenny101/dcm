@@ -1,7 +1,7 @@
 {
   "name": "dcm",
   "productName": "Digital Concept Map",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Digital Concept Map",
   "main": "main.js",
   "scripts": {

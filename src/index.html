@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="index.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <title>Digital Concept Map</title>
@@ -13,7 +13,7 @@
     <div class="base">
       <span class="close">Close</span>
       <div class="main">
-        <iframe id="dcm"></iframe>
+        <iframe id="dcm" scrolling = "no"></iframe>
         <div class="title">
           <div class="cmap-container">Digital Concept Map</div>
         </div>
@@ -38,19 +38,24 @@
                 <p>Research Scholar</p>
             </div>
         </div>
-        <div id="popup">
-          <div id="backward" class="popupButtons" onclick="history.go(-1)">
-            <img src="images/left-arrow.png" class="popupButtons" />
-          </div>
-          <div id="home" class="popupButtons" onclick="location.reload()">
-            <img src="images/home.png" class="popupButtons" />
-          </div>
-          <div id="forward" class="popupButtons" onclick="history.go(1)">
-            <img src="images/right-arrow.png" class="popupButtons" />
-          </div>
+
+      </div>
+
+      <div id="modal">
+        <div id = "modal-box">
+          <span id = "select">Select</span>
+          <span id = "modal-close">X</span>
+          <div id = "icon1" class = "modal-icon"></div>
+          <div id = "icon2" class = "modal-icon"></div>
+          <span id = "iconName"></span>
+
+          <span 
         </div>
       </div>
-      <span class="navigator">Navigator</span>
+      <div class="navigator">
+        <span id="back" class="navigatorButton" onclick="backwardCheck()">Back</span>
+        <span id = "home" class="navigatorButton" onclick="location.reload()">Home</span>
+      </div>
     </div>
   </body>
 </html>
