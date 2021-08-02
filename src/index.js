@@ -42,40 +42,42 @@ function hideCmaps() {
 function goToPage(page) {
   hideCmaps();
   $("#dcm").css("display", "block");
-  if (page == 1) {
+  if (page == '11') {
     $("#dcm").attr(
       "src",
       "assets/CURRENT ELECTRICITY/CURRENT ELECTRICITY AND ELECTRIC ENERGY-CONTENT.cmap.html"
     );
   }
-  if (page == 2) {
+  if (page == '21') {
     $("#dcm").attr(
       "src",
       "assets/MEASUREMENT/MEASUREMENT-CONTENT.cmap.html"
     );
   }
-  if (page == 3) {
+  if (page == '31') {
     $("#dcm").attr(
       "src",
       "assets/LAWS OF MOTION/LAWS OF MOTION- CONTENT.cmap.html"
     );
   }
-  if (page == 4) {
+  if (page == '41') {
     $("#dcm").attr(
       "src",
       "assets/LIGHT/LIGHT - CONTENT.cmap.html"
     );
   }
-  if (page == 5) {
+  if (page == '51') {
     $("#dcm").attr(
       "src",
       "assets/SOUND/SOUND - CONTENT.cmap.html"
     );
   }
+  closeModal();
+
 }
 
 function backwardCheck(){
-  document.getElementById("dcm").contentWindow.history.back();
+  history.back();
   setTimeout(function(){
     var url = document.getElementById("dcm").contentWindow.location.href;
   
@@ -86,5 +88,43 @@ function backwardCheck(){
 
 }
 
+function setPageLocal(page){
+  //THIS WAS A TOTALLY STUPID THING TO DO BUT I AM MORE LAZY TO CHANGE IT
+  openModal(page);
+}
 
+function openModal(page){
+  $("#modal").css("display","block");
+
+
+
+  $('#icon1').hover(function(){$('#iconName').html("Lesson Plan");},function(){$('#iconName').html("");});
+  $('#icon2').hover(function(){$('#iconName').html("Content");},function(){$('#iconName').html("");});
+
+  
+  var icon1 = document.getElementById('icon1');
+  var icon2 = document.getElementById('icon2');
+
+
+  icon1.addEventListener("click",function(){
+    goToPage(page+'0');
+  });
+
+  icon2.addEventListener("click",function(){
+    goToPage(page+'1');
+  });
+  
+}
+
+function closeModal() {
+  $("#modal").css("display","none");
+  var icon1 = document.getElementById('icon1');
+  var icon2 = document.getElementById('icon2');
+
+  icon1.removeEventListener("click");
+
+  icon2.removeEventListener("click");
+ 
+  
+}
 

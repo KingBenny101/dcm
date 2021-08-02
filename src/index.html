@@ -13,48 +13,56 @@
     <div class="base">
       <span class="close">Close</span>
       <div class="main">
-        <iframe id="dcm" scrolling = "no"></iframe>
+        <iframe id="dcm" scrolling="yes"></iframe>
         <div class="title">
           <div class="cmap-container">Digital Concept Map</div>
         </div>
-        <div id="cmap1" class="cmap" onclick="goToPage(1)">
+        <div id="cmap1" class="cmap" onclick="setPageLocal(1)">
           <div class="cmap-container">Electricity</div>
         </div>
-        <div id="cmap2" class="cmap" onclick="goToPage(2)">
+        <div id="cmap2" class="cmap" onclick="setPageLocal(2)">
           <div class="cmap-container">Measurement</div>
         </div>
-        <div id="cmap3" class="cmap" onclick="goToPage(3)">
+        <div id="cmap3" class="cmap" onclick="setPageLocal(3)">
           <div class="cmap-container">Laws of Motion</div>
         </div>
-        <div id="cmap4" class="cmap" onclick="goToPage(4)">
+        <div id="cmap4" class="cmap" onclick="setPageLocal(4)">
           <div class="cmap-container">Light</div>
         </div>
-        <div id="cmap5" class="cmap" onclick="goToPage(5)">
+        <div id="cmap5" class="cmap" onclick="setPageLocal(5)">
           <div class="cmap-container">Sound</div>
         </div>
         <div id="profile">
-            <div class="cmap-container">
-                <h1>Delphin DL</h1>
-                <p>Research Scholar</p>
-            </div>
+          <div class="cmap-container">
+            <h1>Delphin DL</h1>
+            <p>Research Scholar</p>
+          </div>
         </div>
-
       </div>
 
       <div id="modal">
-        <div id = "modal-box">
-          <span id = "select">Select</span>
-          <span id = "modal-close">X</span>
-          <div id = "icon1" class = "modal-icon"></div>
-          <div id = "icon2" class = "modal-icon"></div>
-          <span id = "iconName"></span>
+        <div id="modal-box">
+          <span id="select">Select</span>
+          <span id="modal-close" onclick="closeModal()">X</span>
+          <div class="modal-icon-container">
+            
+              <img id="icon1" class = "modal-icon" src= "images/board.png">
+            
+          
+              <img id="icon2" class="modal-icon" src= "images/books.png">
 
-          <span 
+            
+          </div>
+          <span id="iconName"></span>
         </div>
       </div>
       <div class="navigator">
-        <span id="back" class="navigatorButton" onclick="backwardCheck()">Back</span>
-        <span id = "home" class="navigatorButton" onclick="location.reload()">Home</span>
+        <span id="back" class="navigatorButton" onclick="backwardCheck()"
+          >Back</span
+        >
+        <span id="home" class="navigatorButton" onclick="location.reload()"
+          >Home</span
+        >
       </div>
     </div>
   </body>
