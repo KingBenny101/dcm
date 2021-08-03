@@ -23,6 +23,9 @@ window.addEventListener("load", function () {
   setTimeout(function () {
     window.scroll(screen.width / 2, screen.height / 2);
   }, 1);
+
+
+  
 });
 
 // functions
