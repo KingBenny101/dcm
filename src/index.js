@@ -45,34 +45,38 @@ function hideCmaps() {
 function goToPage(page) {
   hideCmaps();
   $("#dcm").css("display", "block");
+
+  var assetsPath = '../assets';
+  //assetsPath = path.join(__dirname, assetsPath).replace("app.asar", "app.asar.unpacked");
+
   if (page == '11') {
     $("#dcm").attr(
       "src",
-      "assets/CURRENT ELECTRICITY/CURRENT ELECTRICITY AND ELECTRIC ENERGY-CONTENT.cmap.html"
+      assetsPath + "/CURRENT ELECTRICITY/CURRENT ELECTRICITY AND ELECTRIC ENERGY-CONTENT.cmap.html"
     );
   }
   if (page == '21') {
     $("#dcm").attr(
       "src",
-      "assets/MEASUREMENT/MEASUREMENT-CONTENT.cmap.html"
+      assetsPath + "/MEASUREMENT/MEASUREMENT-CONTENT.cmap.html"
     );
   }
   if (page == '31') {
     $("#dcm").attr(
       "src",
-      "assets/LAWS OF MOTION/LAWS OF MOTION- CONTENT.cmap.html"
+      assetsPath + "/LAWS OF MOTION/LAWS OF MOTION- CONTENT.cmap.html"
     );
   }
   if (page == '41') {
     $("#dcm").attr(
       "src",
-      "assets/LIGHT/LIGHT - CONTENT.cmap.html"
+      assetsPath + "/LIGHT/LIGHT - CONTENT.cmap.html"
     );
   }
   if (page == '51') {
     $("#dcm").attr(
       "src",
-      "assets/SOUND/SOUND - CONTENT.cmap.html"
+      assetsPath + "/SOUND/SOUND - CONTENT.cmap.html"
     );
   }
   closeModal();

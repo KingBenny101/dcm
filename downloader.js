@@ -147,7 +147,7 @@ function extractFile() {
 }
 
 function assetsDownloader(content) {
-  const assetsPath = "./src/assets";
+  const assetsPath = "./assets";
   const zipPath = "./assets.7z";
   if (fs.existsSync(assetsPath)) {
     console.log("The files exist.");
