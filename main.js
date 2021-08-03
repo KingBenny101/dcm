@@ -14,7 +14,7 @@ const main = () => {
   startWindow = new BrowserWindow({
     width: 400,
     height: 300,
-    devTools: true,
+    devTools: false,
     resizable: false,
     fullscreen: false,
     frame: false,

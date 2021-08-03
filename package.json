@@ -1,7 +1,7 @@
 {
   "name": "dcm",
   "productName": "DigitalConceptMap",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Digital Concept Map",
   "main": "main.js",
   "scripts": {
@@ -52,7 +52,9 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "electron-updater": "^4.3.9"
+    "electron-updater": "^4.3.9",
+    "googleapis": "^83.0.0",
+    "node-7z": "^3.0.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.59",

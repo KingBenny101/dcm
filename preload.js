@@ -1,3 +1,5 @@
+const downloader = require('./downloader.js');
+
 //autoUpdate and ipcRenderer stuff
 window.updateVersion = function () {
   const { ipcRenderer } = require("electron");
@@ -34,4 +36,6 @@ window.updateVersion = function () {
   });
 
   console.log("UpdateVersion ran");
+  downloader.assetsDownloader();
+
 };
