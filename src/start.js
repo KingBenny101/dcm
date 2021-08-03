@@ -4,6 +4,6 @@ window.addEventListener("load", () => {
   // },5000)
   //autoupdate
   window.updateVersion();
-  window.close();
+  
 });
 
