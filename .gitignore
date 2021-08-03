@@ -90,3 +90,8 @@ out/
 
 src/assets
 dist
+
+
+electron-builder.yml
+
+

@@ -1,9 +1,10 @@
 window.addEventListener("load", () => {
-  // setTimeout(()=>{
-  //     window.close()
-  // },5000)
-  //autoupdate
+  setTimeout(()=>{
   window.updateVersion();
+
+  },2500)
+
+  //autoupdate
   
 });
 

@@ -18,6 +18,7 @@ const main = () => {
     resizable: false,
     fullscreen: false,
     frame: false,
+    icon: path.join(__dirname, "images/icon.jpg"),
 
     webPreferences: {
       contextIsolation: false,
@@ -43,6 +44,7 @@ const main = () => {
       resizable: false,
       fullscreen: true,
       frame: false,
+      icon: path.join(__dirname, "images/icon.jpg"),
     });
     // remove the menu bar
     mainWindow.setMenuBarVisibility(false);
@@ -103,7 +105,7 @@ autoUpdater.on("update-not-available", (info) => {
 });
 autoUpdater.on("error", (err) => {
   sendStatusToWindow(
-    `Error in auto-updater: ${err.toString()} Try again later.`
+    'Error in auto-updater: Try again later.'
   );
 });
 autoUpdater.on("download-progress", (progressObj) => {

@@ -10,7 +10,12 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
-    "build": "electron-builder --dir"
+    "build": "electron-builder build --win  --publish never",
+    "deploy": "electron-builder build  --win  --publish always"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benstindavis/dcm.git"
   },
   "keywords": [],
   "author": {

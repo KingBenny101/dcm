@@ -19,9 +19,18 @@ window.updateVersion = function () {
     if(text == 'Update not available.'){
         setTimeout(function(){
             window.close();
-        },5000);
+            window.close();
+
+        },2500);
     }
-    
+
+    if(text == 'Error in auto-updater: Try again later.'){
+        setTimeout(function(){
+            window.close();
+            window.close();
+        },2500);
+    }
+
   });
 
   console.log("UpdateVersion ran");
