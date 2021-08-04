@@ -3,6 +3,8 @@ const path = require("path");
 const { start } = require("repl");
 const { autoUpdater } = require("electron-updater");
 
+
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
   // eslint-disable-line global-require
@@ -102,11 +104,18 @@ autoUpdater.on("update-available", (info) => {
 });
 autoUpdater.on("update-not-available", (info) => {
   sendStatusToWindow("Update not available.");
+  setTimeout(function(){
+    startWindow.webContents.send("continue");
+  },2500);
 });
 autoUpdater.on("error", (err) => {
   sendStatusToWindow(
-    'Error in auto-updater: Try again later.'
+    `Error in auto-updater: Try again later. ${err}`
   );
+
+  setTimeout(function(){
+    startWindow.webContents.send("appQuit");
+  },5000);
 });
 autoUpdater.on("download-progress", (progressObj) => {
   sendStatusToWindow(

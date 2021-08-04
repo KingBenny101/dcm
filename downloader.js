@@ -19,6 +19,7 @@ const TOKEN_PATH = "token.json";
 fs.readFile("credentials.json", (err, content) => {
   if (err) return console.log("Error loading client secret file:", err);
   // Authorize a client with credentials, then call the Google Drive API.
+
   assetsDownloader(content);
 });
 
@@ -101,27 +102,29 @@ function listFiles(auth) {
   );
 }
 
-function downloadFile(auth) {
+async function downloadFile(auth) {
   const drive = google.drive({ version: "v3", auth });
   var fileId = "1YyjxJDo5X9k31Bb0DqBeedm5mk5-r2k2";
 
   var dest = fs.createWriteStream("./assets.7z");
-  drive.files.get(
-    { fileId: fileId, alt: "media" },
-    { responseType: "stream" },
-    function (err, res) {
-      res.data
-        .on("end", () => {
-          console.log("Done");
-          console.log("Extracting");
-          extractFile();
-        })
-        .on("error", (err) => {
-          console.log("Error", err);
-        })
-        .pipe(dest);
-    }
-  );
+
+  drive.files.get({ 
+    fileId: fileId, alt: "media" 
+  },{responseType: 'stream'},(err,res)=>{
+    res.data
+    .on("end", () => {
+      console.log("Done");
+      console.log("Extracting");
+      extractFile();
+    })
+    .on("error", () => {
+      console.log("Error", err);
+    })
+    .pipe(dest);
+
+  });
+
+
 }
 
 function extractFile() {
@@ -143,11 +146,11 @@ function extractFile() {
     fs.unlinkSync(zipPath);
   });
 
-  myStream.on("error", (err) => handleError(err));
+  myStream.on("error", (err) => console.error(err));
 }
 
 function assetsDownloader(content) {
-  const assetsPath = "./assets";
+  const assetsPath = "./src/assets";
   const zipPath = "./assets.7z";
   if (fs.existsSync(assetsPath)) {
     console.log("The files exist.");
@@ -160,7 +163,5 @@ function assetsDownloader(content) {
     authorize(JSON.parse(content), downloadFile);
   }
 }
-
-
 
 module.exports = { assetsDownloader };
