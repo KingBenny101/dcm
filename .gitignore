@@ -92,7 +92,7 @@ src/assets
 dist
 
 
-*.yml
+electron-builder.yml
 
 token.json
 credentials.json
