@@ -89,6 +89,7 @@ typings/
 out/
 
 src/assets
+assets/assets
 dist
 
 
