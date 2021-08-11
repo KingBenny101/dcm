@@ -5,8 +5,8 @@ window.updateVersion = function () {
   const version = document.getElementById("version");
 
   // Updates the version number from package.json
-  ipcRenderer.send("app_version");
-  ipcRenderer.on("app_version", (event, arg) => {
+  ipcRenderer.send("appVersion");
+  ipcRenderer.on("appVersion", (event, arg) => {
     ipcRenderer.removeAllListeners("app_version");
     version.innerText = arg.version;
   });
@@ -33,17 +33,13 @@ window.ipcWrapper = function (){
 
     log.innerHTML = text;
 
-    console.log("Message from updater:", text);
+    console.log("Message from Main:", text);
   });
 
-  ipcRenderer.on("continue", function (event) {
-    console.log("Got Continue event");
-    console.log("sending downloaded-assets");
+  ipcRenderer.on("loadedAssets", function (event) {
   
-    ipcRenderer.send("downloaded-assets");
+    ipcRenderer.send("launchApp");
       
- 
-
   });
 
   ipcRenderer.on("windowQuit", function (event) {
