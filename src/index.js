@@ -42,7 +42,7 @@ function goToPage(page) {
   hideCmaps();
   $("#dcm").css("display", "block");
 
-  var assetsPath = "../assets/assets";
+  var assetsPath = "../assets";
   //assetsPath = path.join(__dirname, assetsPath).replace("app.asar", "app.asar.unpacked");
 
   if (page == "10") {
