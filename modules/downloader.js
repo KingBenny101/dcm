@@ -11,7 +11,7 @@ log.transports.file.level = 'info';
 log.transports.file.file = path.join(__dirname, '/../logs/log.log').replace("app.asar", "app.asar.unpacked"); 
 var folderPath = './assets/';
 var zipPath = './assets/assets.7z';
-var extractPath = './assets/';
+var extractPath = './';
 
 //folderPath = path.join(__dirname, folderPath).replace("app.asar", "app.asar.unpacked");
 //zipPath = path.join(__dirname, zipPath).replace("app.asar", "app.asar.unpacked");
