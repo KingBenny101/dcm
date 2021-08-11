@@ -9,7 +9,7 @@ var temp = dirPath.split("modules");
 dirPath = temp[0] ;
 
 log.transports.file.level = "info";
-log.transports.file.file = dirPath;
+log.transports.file.file = dirPath + "logs/log.log";
 //.replace(/app.asar/, "app.asar.unpacked");
 var folderPath = "./assets/";
 var zipPath = "./assets/assets.7z";
