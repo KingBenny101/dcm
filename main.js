@@ -32,7 +32,7 @@ const main = () => {
   });
 
   startWindow.setMenuBarVisibility(false);
-  //startWindow.webContents.openDevTools();
+  startWindow.webContents.openDevTools();
 
   startWindow.loadFile(path.join(__dirname, "src/start.html"));
   startWindow.once("ready-to-show", () => {
@@ -64,6 +64,11 @@ const main = () => {
       frame: false,
      
       icon: path.join(__dirname, "images/icon.jpg"),
+      webPreferences: {
+        contextIsolation: false,
+  
+        preload: path.join(__dirname, "modules/preload.js"),
+      },
     });
     // remove the menu bar
     mainWindow.setMenuBarVisibility(false);
@@ -71,7 +76,7 @@ const main = () => {
     // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, "src/index.html"));
     // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
  
   });
 };

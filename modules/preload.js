@@ -15,6 +15,13 @@ window.updateVersion = function () {
   console.log("UpdateVersion ran");
 };
 
+window.getPath = function(){
+  const path = require("path");
+  var dirPath = path.join(__dirname,"/assets");
+  var temp = dirPath.split("modules");
+  dirPath = temp[0] + "assets";
+  return dirPath;
+}
 
 
 //ipc stuff

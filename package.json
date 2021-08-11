@@ -18,7 +18,7 @@
       "modules/token.json",
       "modules/credentials.json",
       "modules/files.json",
-      "modules/assets/README.md"
+      "assets/README.md"
     ]
   },
   "repository": {

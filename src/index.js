@@ -40,11 +40,15 @@ function hideCmaps() {
 
 function goToPage(page) {
   hideCmaps();
+  closeModal();
+
   $("#dcm").css("display", "block");
 
-  var assetsPath = "../assets";
-  //assetsPath = path.join(__dirname, assetsPath).replace("app.asar", "app.asar.unpacked");
+  var assetsPath = window.getPath();
+  assetsPath =assetsPath.replace(/resources/, "/");
+  assetsPath =assetsPath.replace(/app.asar/, "/");
 
+  console.log(assetsPath);
   if (page == "10") {
     $("#dcm").attr(
       "src",
@@ -96,7 +100,6 @@ function goToPage(page) {
   if (page == "51") {
     $("#dcm").attr("src", assetsPath + "/SOUND/SOUND - CONTENT.cmap.html");
   }
-  closeModal();
 }
 
 function backwardCheck() {
@@ -152,7 +155,7 @@ function closeModal() {
   var icon1 = document.getElementById("icon1");
   var icon2 = document.getElementById("icon2");
 
-  icon1.removeEventListener("click");
+  icon1.removeEventListener("click",null);
 
-  icon2.removeEventListener("click");
+  icon2.removeEventListener("click",null);
 }
