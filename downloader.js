@@ -1,9 +1,28 @@
 const fs = require("fs");
+const path = require("path");
 const readline = require("readline");
 const { google } = require("googleapis");
 const { Seven } = require("node-7z");
 const sevenBin = require("7zip-bin");
 const { extractFull } = require("node-7z");
+const log = require('electron-log');
+
+log.transports.file.level = 'info';
+log.transports.file.file = path.join(__dirname, '/assets/logs/log.log').replace("app.asar", "app.asar.unpacked"); 
+var folderPath = './assets/';
+var zipPath = './assets/assets.7z';
+var extractPath = './assets/';
+
+//folderPath = path.join(__dirname, folderPath).replace("app.asar", "app.asar.unpacked");
+//zipPath = path.join(__dirname, zipPath).replace("app.asar", "app.asar.unpacked");
+//extractPath = path.join(__dirname, extractPath).replace("app.asar", "app.asar.unpacked");
+folderPath =  folderPath.replace("app.asar", "app.asar.unpacked");
+
+zipPath = zipPath.replace("app.asar", "app.asar.unpacked");
+
+extractPath = extractPath.replace("app.asar", "app.asar.unpacked");
+
+
 
 // If modifying these scopes, delete token.json.
 const SCOPES = [
@@ -15,13 +34,15 @@ const SCOPES = [
 // time.
 const TOKEN_PATH = "token.json";
 
-// Load client secrets from a local file.
-fs.readFile("credentials.json", (err, content) => {
-  if (err) return console.log("Error loading client secret file:", err);
-  // Authorize a client with credentials, then call the Google Drive API.
+async function startDownloader(callback) {
+  // Load client secrets from a local file.
+  fs.readFile("credentials.json", (err, content) => {
+    if (err) return console.log("Error loading client secret file:", err);
+    // Authorize a client with credentials, then call the Google Drive API.
 
-  assetsDownloader(content);
-});
+    assetsDownloader(content,callback);
+  });
+}
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -29,7 +50,7 @@ fs.readFile("credentials.json", (err, content) => {
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
-function authorize(credentials, callback) {
+function authorize(credentials, callback,cback) {
   const { client_secret, client_id, redirect_uris } = credentials.installed;
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
@@ -41,7 +62,7 @@ function authorize(credentials, callback) {
   fs.readFile(TOKEN_PATH, (err, token) => {
     if (err) return getAccessToken(oAuth2Client, callback);
     oAuth2Client.setCredentials(JSON.parse(token));
-    callback(oAuth2Client);
+    callback(oAuth2Client,cback);
   });
 }
 
@@ -102,66 +123,92 @@ function listFiles(auth) {
   );
 }
 
-async function downloadFile(auth) {
+function downloadFile(auth,callback) {
   const drive = google.drive({ version: "v3", auth });
   var fileId = "1YyjxJDo5X9k31Bb0DqBeedm5mk5-r2k2";
 
-  var dest = fs.createWriteStream("./assets.7z");
+  var dest = fs.createWriteStream(zipPath);
 
-  drive.files.get({ 
-    fileId: fileId, alt: "media" 
-  },{responseType: 'stream'},(err,res)=>{
-    res.data
-    .on("end", () => {
-      console.log("Done");
-      console.log("Extracting");
-      extractFile();
-    })
-    .on("error", () => {
-      console.log("Error", err);
-    })
-    .pipe(dest);
+  drive.files.get(
+    {
+      fileId: fileId,
+      alt: "media",
+    },
+    { responseType: "stream" },
+    (err, res) => {
+      res.data
+        .on("end", () => {
+          console.log("Done");
+          log.info("Done");
+          var stats = fs.statSync(zipPath);
+          var fileSizeInBytes = stats.size;
+          console.log(fileSizeInBytes);
+          log.info(fileSizeInBytes);
+          console.log("Extracting");
+          log.info("Extracting");
 
-  });
+          extractFile(callback);
+        })
+        .on("error", () => {
+          console.log("Error", err);
+          log.error(err);
 
-
+        })
+        .pipe(dest);
+    }
+  );
 }
 
-function extractFile() {
+function extractFile(callback) {
   const pathTo7zip = sevenBin.path7za;
-  const myStream = extractFull("./assets.7z", "./src/", {
+  const myStream = extractFull(zipPath, extractPath, {
     $bin: pathTo7zip,
     $progress: true,
   });
 
   myStream.on("progress", function (progress) {
-    console.log(progress.percent); //? { percent: 67, fileCount: 5, file: undefinded }
+    console.log(progress.percent);
+    log.info(progress.percent); //? { percent: 67, fileCount: 5, file: undefinded }
   });
 
   myStream.on("end", function () {
     console.log("Extracted the files.");
+    log.info("Extracted the files");
     console.log("Deleting ZIP");
-    const zipPath = "./assets.7z";
+    log.info("Deleting ZIP");
 
     fs.unlinkSync(zipPath);
+    callback();
   });
 
-  myStream.on("error", (err) => console.error(err));
+  myStream.on("error", (err) => {
+    console.error(err);
+    log.error(err);
+
+  });
 }
 
-function assetsDownloader(content) {
-  const assetsPath = "./src/assets";
-  const zipPath = "./assets.7z";
-  if (fs.existsSync(assetsPath)) {
+function assetsDownloader(content,callback) {
+  const {checkFiles} = require("./files.js");
+  if (checkFiles()) {
     console.log("The files exist.");
-  } else if (fs.existsSync(zipPath)) {
+    log.info("The files exist");
+    callback();
+  } 
+  else if (fs.existsSync(zipPath)) {
     console.log("ZIP exists, so extracting");
-    extractFile();
+    log.info("ZIP exists, so extracting");
+
+    extractFile(callback);
   } else {
     console.log("Downloading Files, Please wait.");
+    log.info("Downloading Files, Please wait.");
+    
     // Authorize a client with credentials, then call the Google Drive API.
-    authorize(JSON.parse(content), downloadFile);
+    authorize(JSON.parse(content), downloadFile,callback);
   }
 }
 
-module.exports = { assetsDownloader };
+module.exports = { startDownloader };
+
+

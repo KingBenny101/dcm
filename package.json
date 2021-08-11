@@ -1,7 +1,7 @@
 {
   "name": "dcm",
   "productName": "DigitalConceptMap",
-  "version": "1.2.1",
+  "version": "1.3.1",
   "description": "Digital Concept Map",
   "main": "main.js",
   "scripts": {
@@ -12,6 +12,14 @@
     "lint": "echo \"No linting configured\"",
     "build": "electron-builder build --win  --publish never",
     "deploy": "electron-builder build  --win  --publish always"
+  },
+  "build": {
+    "extraFiles": [
+      "token.json",
+      "credentials.json",
+      "files.json",
+      "assets/oof.txt"
+    ]
   },
   "repository": {
     "type": "git",
@@ -52,9 +60,11 @@
   },
   "dependencies": {
     "7zip-bin": "^5.1.1",
+    "electron-log": "^4.4.1",
     "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^4.3.9",
     "googleapis": "^83.0.0",
+    "glob": "^7.1.7",
     "node-7z": "^3.0.0"
   },
   "devDependencies": {

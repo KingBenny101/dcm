@@ -1,7 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-const { start } = require("repl");
 const { autoUpdater } = require("electron-updater");
+
+//const { start } = require("repl");
 
 
 
@@ -12,6 +13,7 @@ if (require("electron-squirrel-startup")) {
 }
 
 let startWindow = null;
+
 const main = () => {
   startWindow = new BrowserWindow({
     width: 400,
@@ -21,7 +23,7 @@ const main = () => {
     fullscreen: false,
     frame: false,
     icon: path.join(__dirname, "images/icon.jpg"),
-
+    show: false,
     webPreferences: {
       contextIsolation: false,
 
@@ -30,11 +32,25 @@ const main = () => {
   });
 
   startWindow.setMenuBarVisibility(false);
-  startWindow.webContents.openDevTools();
+  //startWindow.webContents.openDevTools();
 
   startWindow.loadFile(path.join(__dirname, "src/start.html"));
   startWindow.once("ready-to-show", () => {
-    autoUpdater.checkForUpdatesAndNotify();
+    startWindow.show();
+
+    //autoUpdater.checkForUpdatesAndNotify();
+    console.log("running downloader");
+    sendStatusToWindow("Downloading Assets....Please Wait!!")
+
+    const {startDownloader} = require("./downloader.js")
+    setTimeout(() => {
+      startDownloader(()=>{
+        console.log("sending continue event");
+        startWindow.webContents.send("continue");
+      });      
+    }, 2000);
+
+
   });
 
   startWindow.on("closed", () => {
@@ -46,6 +62,7 @@ const main = () => {
       resizable: false,
       fullscreen: true,
       frame: false,
+     
       icon: path.join(__dirname, "images/icon.jpg"),
     });
     // remove the menu bar
@@ -55,6 +72,7 @@ const main = () => {
     mainWindow.loadFile(path.join(__dirname, "src/index.html"));
     // Open the DevTools.
     //mainWindow.webContents.openDevTools();
+ 
   });
 };
 
@@ -83,19 +101,30 @@ app.on("activate", () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
+
+//-------------------------------------------------------------------
+// ipcMain Events
+//-------------------------------------------------------------------
 ipcMain.on("app_version", (event) => {
   event.sender.send("app_version", { version: app.getVersion() });
 });
 
+
+ipcMain.on("downloaded-assets",(event)=>{
+  sendStatusToWindow("Downloaded Assets...")
+  setTimeout(() => {
+    event.sender.send("windowQuit");
+    
+  }, 2000);
+});
+
+ipcMain.on("messageFromDownloader",(event,text)=>{
+  sendStatusToWindow(text);
+})
+
 //-------------------------------------------------------------------
 // Auto updates
 //-------------------------------------------------------------------
-const sendStatusToWindow = (text) => {
-  if (startWindow) {
-    startWindow.webContents.send("message", text);
-  }
-};
-
 autoUpdater.on("checking-for-update", () => {
   sendStatusToWindow("Checking for update...");
 });
@@ -104,9 +133,6 @@ autoUpdater.on("update-available", (info) => {
 });
 autoUpdater.on("update-not-available", (info) => {
   sendStatusToWindow("Update not available.");
-  setTimeout(function(){
-    startWindow.webContents.send("continue");
-  },2500);
 });
 autoUpdater.on("error", (err) => {
   sendStatusToWindow(
@@ -139,8 +165,11 @@ autoUpdater.on("update-downloaded", (info) => {
   autoUpdater.quitAndInstall();
 });
 
-// utils
 
+
+//-------------------------------------------------------------------
+// Utils
+//-------------------------------------------------------------------
 function formatBytes(a, b = 2) {
   if (0 === a) return "0 Bytes";
   const c = 0 > b ? 0 : b,
@@ -151,3 +180,12 @@ function formatBytes(a, b = 2) {
     ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"][d]
   );
 }
+
+
+const sendStatusToWindow = (text) => {
+  if (startWindow) {
+    startWindow.webContents.send("message", text);
+  }
+};
+
+
