@@ -26,7 +26,7 @@ getDirectories('./assets', function (err, res) {
 
 function checkFiles(){
     
-var results = JSON.parse(fs.readFileSync('files.json', 'utf8'));
+var results = JSON.parse(fs.readFileSync('./modules/files.json', 'utf8'));
 //console.log(results);
 for (i = 0; i < results.length;i++){
     if(fs.existsSync(results[i])){

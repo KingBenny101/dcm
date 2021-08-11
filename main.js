@@ -27,7 +27,7 @@ const main = () => {
     webPreferences: {
       contextIsolation: false,
 
-      preload: path.join(__dirname, "preload.js"),
+      preload: path.join(__dirname, "modules/preload.js"),
     },
   });
 
@@ -42,7 +42,7 @@ const main = () => {
     console.log("running downloader");
     sendStatusToWindow("Downloading Assets....Please Wait!!")
 
-    const {startDownloader} = require("./downloader.js")
+    const {startDownloader} = require("./modules/downloader.js")
     setTimeout(() => {
       startDownloader(()=>{
         console.log("sending continue event");

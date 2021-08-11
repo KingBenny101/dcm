@@ -8,7 +8,7 @@ const { extractFull } = require("node-7z");
 const log = require('electron-log');
 
 log.transports.file.level = 'info';
-log.transports.file.file = path.join(__dirname, '/assets/logs/log.log').replace("app.asar", "app.asar.unpacked"); 
+log.transports.file.file = path.join(__dirname, '/../logs/log.log').replace("app.asar", "app.asar.unpacked"); 
 var folderPath = './assets/';
 var zipPath = './assets/assets.7z';
 var extractPath = './assets/';
@@ -32,11 +32,11 @@ const SCOPES = [
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
-const TOKEN_PATH = "token.json";
+const TOKEN_PATH = "./modules/token.json";
 
 async function startDownloader(callback) {
   // Load client secrets from a local file.
-  fs.readFile("credentials.json", (err, content) => {
+  fs.readFile("./modules/credentials.json", (err, content) => {
     if (err) return console.log("Error loading client secret file:", err);
     // Authorize a client with credentials, then call the Google Drive API.
 
