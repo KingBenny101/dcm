@@ -16,11 +16,11 @@ var extractPath = "./";
 //folderPath = path.join(__dirname, folderPath).replace("app.asar", "app.asar.unpacked");
 //zipPath = path.join(__dirname, zipPath).replace("app.asar", "app.asar.unpacked");
 //extractPath = path.join(__dirname, extractPath).replace("app.asar", "app.asar.unpacked");
-folderPath = folderPath.replace("app.asar", "app.asar.unpacked");
+folderPath = folderPath.replace(/app.asar/, "app.asar.unpacked");
 
-zipPath = zipPath.replace("app.asar", "app.asar.unpacked");
+zipPath = zipPath.replace(/app.asar/, "app.asar.unpacked");
 
-extractPath = extractPath.replace("app.asar", "app.asar.unpacked");
+extractPath = extractPath.replace(/app.asar/, "app.asar.unpacked");
 
 // If modifying these scopes, delete token.json.
 const SCOPES = [
