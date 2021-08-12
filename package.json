@@ -10,16 +10,36 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
     "build": "electron-builder build --win  --publish never",
-    "deploy": "electron-builder build  --win  --publish always",
-    "package": "electrin-builder package --win"
+    "deploy": "electron-builder build  --win  --publish always"
   },
   "build": {
     "extraFiles": [
       "modules/token.json",
       "modules/credentials.json",
       "modules/files.json",
+      "modules/config.json",
+
       "assets/README.md"
-    ]
+    ],
+    "win": {
+      "target": "nsis",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis":{
+      "allowToChangeInstallationDirectory" : "true",
+      "oneClick": "false"
+    },
+  
+    "appId" : "com.kingbenny101.dcm",
+    "publish":{
+      "provider": "github",
+      "token": "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"
+
+    }
+ 
+
+
+   
   },
   "repository": {
     "type": "git",

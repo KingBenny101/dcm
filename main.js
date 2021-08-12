@@ -36,7 +36,6 @@ const main = () => {
   startWindow.once("ready-to-show", () => {
     startWindow.show();
     autoUpdater.checkForUpdatesAndNotify();
-    downloaderStart();
 
   });
 };

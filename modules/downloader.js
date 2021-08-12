@@ -4,13 +4,12 @@ const readline = require("readline");
 const { google } = require("googleapis");
 
 const log = require("electron-log");
-var dirPath = path.join(__dirname,"/assets");
-var temp = dirPath.split("modules");
-dirPath = temp[0] ;
-
 log.transports.file.level = "info";
-log.transports.file.file = dirPath + "logs/log.log";
-//.replace(/app.asar/, "app.asar.unpacked");
+log.transports.file.resolvePath = () =>
+  path
+    .join(__dirname, "logs/main.log")
+    .replace(/app.asar/, "app.asar.unpacked");
+
 var folderPath = "./assets/";
 var zipPath = "./assets/assets.7z";
 var extractPath = "./";
@@ -33,6 +32,7 @@ const SCOPES = [
 // created automatically when the authorization flow completes for the first
 // time.
 const TOKEN_PATH = "./modules/token.json";
+const CONFIG_PATH = "./modules/config.json";
 
 async function startDownloader(callback) {
   // Load client secrets from a local file.
@@ -188,24 +188,43 @@ function extractFile(callback) {
   });
 }
 
-function assetsDownloader(content, callback) {
-  const { checkFiles } = require("./files.js");
-  if (checkFiles()) {
-    console.log("The files exist.");
-    log.info("The files exist");
-    callback();
-  } else if (fs.existsSync(zipPath)) {
-    console.log("ZIP exists, so extracting");
-    log.info("ZIP exists, so extracting");
+function assetsDownloader(con, callback) { // con is content 
+  fs.readFile(CONFIG_PATH, (err, content) => {
+    if (err) {
+      log.error(err);
+      console.log(err);
+      return;
+    }
+    const { checkFiles,deleteFiles } = require("./files.js");
 
-    extractFile(callback);
-  } else {
-    console.log("Downloading Files, Please wait.");
-    log.info("Downloading Files, Please wait.");
+    const config = JSON.parse(content);
+    // console.log(config.assetsUpdateAvailable);
+    // console.log(typeof(config.assetsUpdateAvailable));
+    if(config.assetsUpdateAvailable){
+      config.assetsUpdateAvailable = false;
+      fs.writeFileSync(CONFIG_PATH,JSON.stringify(config));
+      deleteFiles();
 
-    // Authorize a client with credentials, then call the Google Drive API.
-    authorize(JSON.parse(content), downloadFile, callback);
-  }
+    }
+    if (checkFiles()) {
+      console.log("The files exist.");
+      log.info("The files exist");
+      callback();
+    } else if (fs.existsSync(zipPath)) {
+      console.log("ZIP exists, so extracting");
+      log.info("ZIP exists, so extracting");
+  
+      extractFile(callback);
+    } else {
+      console.log("Downloading Files, Please wait.");
+      log.info("Downloading Files, Please wait.");
+  
+      // Authorize a client with credentials, then call the Google Drive API.
+      authorize(JSON.parse(con), downloadFile, callback);
+    }
+
+  });
+
 }
 
 module.exports = { startDownloader };
