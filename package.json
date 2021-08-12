@@ -30,12 +30,8 @@
       "oneClick": "false"
     },
   
-    "appId" : "com.kingbenny101.dcm",
-    "publish":{
-      "provider": "github",
-      "token": "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"
-
-    }
+    "appId" : "com.kingbenny101.dcm"
+    
  
 
 

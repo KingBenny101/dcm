@@ -95,6 +95,8 @@ dist
 
 
 electron-builder.yml
+electron-builder.env
+
 token.json
 credentials.json
 thoughts.txt
